@@ -1,14 +1,14 @@
 /*
-Моя попытка выполнить задание по структурам) 
+My attempt at doing  job on  structs)
 
-Дан пофамильный список учеников с указанием:
-пола, роста, веса и номера класса.
-Индекс массы тела (ИМТ) определяется :
-отношение массы тела в килограммах к квадрату роста в метрах.
-Для каждого класса определить детей с наименьшим значением ИМТ.
+A list of students is given by surname, indicating:
+gender, height, weight and class number.
+Body mass index (BMI) is determined by:
+the ratio of body weight in kilograms to the square of height in meters.
+For each grade, identify the children with the lowest BMI value.
 
-Приступил к работе: 11.09.20 - 23:30
-Закончил работу:    12.09.20 - 07:05
+Started to work: 09/11/20 - 23:30
+Finished work: 09/12/20 - 07:05
 */
 
 #include<iostream>
@@ -19,17 +19,17 @@ using namespace std;
 struct Person {
 	string surname;
 
-	char floor;				//пол
+	char floor;				
 
-	double	growth;			//рост в метрах
+	double	growth;			//Growth in meters
 
-	int	weight;				//вес в кг
-	int class_number;		//номер класса
+	int	weight;				//Weight in kg
+	int class_number;		
 
-	double Body_mass_index;	//Индекс массы тела
+	double Body_mass_index;	
 };
 
-//Для вывод всего списка
+//To display the entire list
 void Get_all (Person* b, int m) {
 	for (int i = 0; i < m; i++){
 		cout << "Surname " << b[i].surname << endl;
@@ -40,23 +40,23 @@ void Get_all (Person* b, int m) {
 
 }
 
-//вывод конкретного ученика
+//Output of a specific student
 void Get_info(Person a) {
-	cout << "Ученик "<< a.class_number<<"-го класса с самым низким И.М.Т." << endl;
-	cout << "Фамилия: " << a.surname << endl;
-	cout << "Пол: " << a.floor << endl;
-	cout << "Индекс массы тела = " << a.Body_mass_index << endl << endl;
+	cout << "Pupil "<< a.class_number<<"-th class with the lowest I.M.T." << endl;
+	cout << "Surname: " << a.surname << endl;
+	cout << "Floor: " << a.floor << endl;
+	cout << "Body mass index = " << a.Body_mass_index << endl << endl;
 	
 }
 
-//Пузырьковая cортировка по индексу массы тела
+//Bubble Sort By Body Mass Index
 Person Sort_body_mass_index(Person* p, int var, int size) {
 	for (int i = var; i < size; i++){
 		for (int j = var; j < size-1; j++){
 
-			//Сравниваем индекс массы тела, если p[j] меньше p[j+1] делаем обмен
+			//Compare the body mass index, if p [j] is less than p [j + 1] make an exchange
 			if (p[j].Body_mass_index < p[j+1].Body_mass_index) {
-				Person temp = p[j];	//"временная" переменная для обмена
+				Person temp = p[j];	//"Temporary" variable for exchange
 
 				p[j] = p[j + 1];
 				p[j + 1] = temp;
@@ -66,11 +66,11 @@ Person Sort_body_mass_index(Person* p, int var, int size) {
 
 	}
 
-	return p[size-1];	//Вернуть последний наименьший элемент структуры
+	return p[size-1];	//Return the last smallest structure element
 
 }
 
-//Пузырьковая cортировка по номеру класса
+//Bubble sort by class number
 void Sort_number_class(Person* p, int size) {
 	for (int i = 0; i < size; i++) {
 		for (int j = 0; j < size - 1; j++) {
@@ -88,67 +88,69 @@ void Sort_number_class(Person* p, int size) {
 }
 
 int main() {
-	setlocale(0, "");	//Поддержка русского языка в консоли
-
 	int const SIZE = 12;
 
-	//массив структур
+	//Static array of structures
 	Person apprentice[SIZE]{
-		{"Комаров",  'М', 1.43, 59, 7, 0},
-		{"Комарова", 'Ж', 1.98, 64, 9, 0},
-		{"Карпова",  'Ж', 1.44, 62, 8, 0},
-		{"Рыбакова", 'Ж', 1.41, 79, 7, 0},
-		{"Жукова",   'Ж', 1.58, 61, 8, 0},
-		{"Карпов",   'М', 1.70, 77, 9, 0},
-		{"Федотова", 'Ж', 1.40, 56, 7, 0},
-		{"Смирнов",  'М', 1.92, 64, 9, 0},
-		{"Лазарева", 'Ж', 1.81, 69, 9, 0},
-		{"Соболев",  'М', 1.62, 61, 8, 0},
-		{"Фролова",  'Ж', 1.60, 61, 8, 0},
-		{"Рыбаков",  'М', 1.36, 53, 7, 0}
+		{"Komarov",  'M', 1.43, 59, 7, 0},
+		{"Komarova", 'W', 1.98, 64, 9, 0},
+		{"Karpova",  'W', 1.44, 62, 8, 0},
+		{"Rybakova", 'W', 1.41, 79, 7, 0},
+		{"Zhukova",  'W', 1.58, 61, 8, 0},
+		{"Karpov",   'M', 1.70, 77, 9, 0},
+		{"Fedotova", 'W', 1.40, 56, 7, 0},
+		{"Smirnov",  'M', 1.92, 64, 9, 0},
+		{"Lazareva", 'W', 1.81, 69, 9, 0},
+		{"Sobolev",  'M', 1.62, 61, 8, 0},
+		{"Frolova",  'W', 1.60, 61, 8, 0},
+		{"Rybakov",  'M', 1.36, 53, 7, 0}
 
 	};
 
-	//Расчёт Индекса массы тела всех учеников(Body_mass_index)
+	//Calculate the Body Mass Index of all students(Body_mass_index)
 	for (int i = 0; i < SIZE; i++) {
 		apprentice[i].Body_mass_index = apprentice[i].weight / pow(apprentice[i].growth, 2);
 
 	}
 	
-	//Вывести весь не сортированный список 
+	//List all unsorted list
 	//Get_all(apprentice, SIZE);
 
-	//сортировка по классам от старших к младшим
+	//Sort by class from highest to lowest
 	Sort_number_class(apprentice, SIZE);
 	
-	int i = 0;		//Внешняя переменная счётчика начала циклов
-	int iter = 0;	//Начало итераций списка
+	int i = 0;		//External variable of the cycle start counter
+	int iter = 0;	//Starting iterating a list
 
-	//идём по списку и ищем количество учеников из 9 класса 
+	//walking through the list and look for the number of students from grade 9
 	for (; i < SIZE; ){
-		//Ищем кол-во учеников из 9 класса
+		//We are looking for the number of students from grade 9
 		if (apprentice[i].class_number == 9) i++;
 		
-		//Выход если совпадений больше нет
+		//Exit if there are no more matches
 		else break;
 	
 	}
 	
-	int temp = i;	//сохраняем последний цикл чтобы в дургом цикле не начинать с нуля
+	//We save the last cycle so that we do not start from scratch in the other cycle
+	int temp = i;	
 	
-	//Ученик 9 класса с наименьшим индексом массы тела
+	
+	//The 9th grade apprentice with the lower body mass index
 	Person student_9th_class_with_the_smallest_BMI;	
 	
-	//из сортированной структуры забираем структуру с наименьшим И.М.Т
+	//From the sorted structure we take the structure with the smallest I.M.T
 	student_9th_class_with_the_smallest_BMI = Sort_body_mass_index(apprentice, iter, temp);
 	
-	//Вывод на экран
+	//Output on display
 	Get_info(student_9th_class_with_the_smallest_BMI);
 
-	int j = temp;	//Перенос кол-ва циклов для продолжения хода по списку не проходя минувшие циклы
+	//Transfer of the number of cycles to continue the move through
+	// the list without going through the past cycles
+	int j = temp;	
 	
-	//2-й цикл где отбираем учеников 8 класса
-	//Продолжая идти по списку с того момента где закончили в прошлом цикле
+	//2nd cycle where we select students of grade 8
+	//Continuing through the list from where we left off in the last loop
 	for (; j < SIZE; ){
 		if (apprentice[j].class_number == 8) j++;
 
@@ -156,22 +158,22 @@ int main() {
 		
 	}
 
-	//Ученик 8 класса с наименьшим индексом массы тела
+	//Grade 8 student with the lowest body mass index
 	Person student_8th_class_with_the_smallest_BMI;	
 
-	//Из сортированной структуры забираем структуру с наименьшим И.М.Т
-	//temp передаёт номер позиции с которой мы закончили прошлый цикл
-	//Идем с temp = 3 до j = 6
+	//From the sorted structure, take the structure with the smallest I.M.T
+	// temp gives the position number from which we ended the last cycle
+	//Go from temp = 3 to j = 6
 	student_8th_class_with_the_smallest_BMI = Sort_body_mass_index(apprentice, temp, j);
 
-	//Вывод на экран
+	//Output on display
 	Get_info(student_8th_class_with_the_smallest_BMI);
 
-	temp = j;	//Сохранение конца прошлого цикла
-	int x = j;	//внешняя переменная счётчика
+	temp = j;	//Save the end of the last cycle
+	int x = j;	
 
-	//3-й цикл где отбираем учеников 7 класса
-	//Продолжая идти по списку с того момента где закончили в прошлом цикле
+	//3rd cycle where we select 7th grade students
+	//Continuing through the list from where we left off in the last loop
 	for (; x < SIZE; ) {
 		if (apprentice[x].class_number == 7) x++;
 
@@ -179,18 +181,18 @@ int main() {
 
 	}
 
-	//Ученик 7 класса с наименьшим индексом массы тела
+	//7th grade student with the lowest body mass index
 	Person student_7th_class_with_the_smallest_BMI;
 
-	//Из сортированной структуры забираем структуру с наименьшим И.М.Т
-	//temp передаёт номер позиции с которой мы закончили прошлый цикл
-	//Идем с temp = 6 до x = 9
+	//From the sorted structure, take the structure with the smallest I.M.T
+	// temp gives the position number from which we ended the last cycle
+	//Go from temp = 6 to x = 9
 	student_7th_class_with_the_smallest_BMI = Sort_body_mass_index(apprentice, temp, x);
 
-	//Вывод на экран
+	//Output on display
 	Get_info(student_7th_class_with_the_smallest_BMI);
 
-	//Вывести весь сортированный список 
+	//Display the entire sorted list
 	//Get_all(apprentice, SIZE);
 
 		system("pause");
